@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
+import TableReducer from './tableReducer'
 
-import tableReducer from './tableReducer'
 const store = configureStore({
-    reducer: {
-        table: tableReducer,
-    }
+     reducer: {
+          table: TableReducer
+     }
 })
-export default store;
+export default store
