@@ -21,7 +21,7 @@ const GetData = (url) => {
         return () => {
             sourceCancel.cancel('Request is canceled');
         }
-    },[])
+    },[url])
     
     return data;
 }
