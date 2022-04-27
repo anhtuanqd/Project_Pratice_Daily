@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import TableReducer from './tableReducer'
+import TableReducer from '../components/TableData/tableReducer'
 
 const store = configureStore({
      reducer: {

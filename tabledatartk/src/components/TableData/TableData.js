@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getData } from '../../Reducers/tableReducer'
+import { getData } from './tableReducer'
 import moment from 'moment'
 
 const TableData = () => {
@@ -10,7 +10,7 @@ const TableData = () => {
      console.log(data)
      useEffect(() => {
           dispatch(getData())
-     }, [])
+     }, [dispatch])
 
      return (
           <div>
