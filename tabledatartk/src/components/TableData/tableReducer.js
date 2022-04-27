@@ -1,32 +1,22 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-
-export const getData = createAsyncThunk('tableReducer/getData', async () => {
-     return await axios
-          .get('https://625ce68595cd5855d6178b7b.mockapi.io/dataset')
-          .then((res) => {
-               return res.data
-          })
-})
+import { createSlice } from '@reduxjs/toolkit'
 
 const tableReducer = createSlice({
      name: 'tableReducer',
      initialState: {
           data: []
      },
-     reducers: {},
-     extraReducers: {
-          [getData.pending]: (state, action) => {
-               state.loading = true
-          },
-          [getData.fulfilled]: (state, action) => {
-               state.loading = true
+     reducers: {
+          getData: (state, action) => {
                state.data = action.payload
           },
-          [getData.rejected]: (state, action) => {
-               state.loading = false
+          editData: (state, action) => {
+               console.log(action.payload)
+               state.data[action.payload.index].name = action.payload.value
           }
      }
 })
 
-export default tableReducer.reducer
+const { actions, reducer } = tableReducer
+export const { getData, editData } = actions
+
+export default reducer

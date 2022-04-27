@@ -2,16 +2,19 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getData } from './tableReducer'
-import moment from 'moment'
+
+import GetData from '../../services/Services'
+import ChildTable from './ChildTable'
 
 const TableData = () => {
      const dispatch = useDispatch()
      const data = useSelector((state) => state.table.data)
-     console.log(data)
+     const dataApi = GetData(
+          'https://625ce68595cd5855d6178b7b.mockapi.io/dataset'
+     )
      useEffect(() => {
-          dispatch(getData())
-     }, [dispatch])
-
+          dispatch(getData(dataApi))
+     }, [dataApi])
      return (
           <div>
                <table border="1">
@@ -25,23 +28,13 @@ const TableData = () => {
                          </tr>
                     </thead>
                     <tbody>
-                         {data.map((item, id) => {
+                         {data.map((item, index) => {
                               return (
-                                   <tr key={id}>
-                                        <td>{item.name}</td>
-                                        <td>{item.shares}</td>
-                                        <td>{item.name}</td>
-                                        <td>
-                                             {moment(item.last_update).format(
-                                                  'MM/DD/YYYY'
-                                             )}
-                                        </td>
-                                        <td>
-                                             {moment(
-                                                  item.transaction_date
-                                             ).format('MM/DD/YYYY')}
-                                        </td>
-                                   </tr>
+                                   <ChildTable
+                                        data={item}
+                                        index={index}
+                                        key={index}
+                                   />
                               )
                          })}
                     </tbody>
