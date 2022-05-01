@@ -1,16 +1,17 @@
 import React, { memo, useState } from 'react'
 import moment from 'moment'
-import { useDispatch } from 'react-redux'
-import { editData } from './tableReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { editData } from './tableSlice'
 
-const ChildTable = (data) => {
-     let dataItem = data.data
-     const [name, setName] = useState('')
+const ChildTable = ({ id }) => {
      const dispatch = useDispatch()
+     const dataItems = useSelector((state) => state.tableReducer.data[id])
+     console.log('children')
+     const [name, setName] = useState('')
      return (
           <tr>
                <td>
-                    {dataItem.name}
+                    {dataItems.name}
                     <input
                          type="text"
                          onChange={(e) => setName(e.target.value)}
@@ -18,18 +19,18 @@ const ChildTable = (data) => {
                     />
                     <button
                          onClick={() => {
-                              dispatch(
-                                   editData({ index: data.index, value: name })
-                              )
+                              dispatch(editData({ value: name, id: id }))
                          }}
                     >
                          Save
                     </button>
                </td>
-               <td>{dataItem.shares}</td>
-               <td>{dataItem.name}</td>
-               <td>{moment(dataItem.last_update).format('MM/DD/YYYY')}</td>
-               <td>{moment(dataItem.transaction_date).format('MM/DD/YYYY')}</td>
+               <td>{dataItems.shares}</td>
+               <td>{dataItems.name}</td>
+               <td>{moment(dataItems.last_update).format('MM/DD/YYYY')}</td>
+               <td>
+                    {moment(dataItems.transaction_date).format('MM/DD/YYYY')}
+               </td>
           </tr>
      )
 }

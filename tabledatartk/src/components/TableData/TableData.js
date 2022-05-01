@@ -1,20 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getData } from './tableReducer'
-
+import { getData, getDataItems } from './tableSlice'
 import GetData from '../../services/Services'
 import ChildTable from './ChildTable'
 
 const TableData = () => {
      const dispatch = useDispatch()
-     const data = useSelector((state) => state.table.data)
-     const dataApi = GetData(
-          'https://625ce68595cd5855d6178b7b.mockapi.io/dataset'
-     )
+     const dataID = useSelector((state) => state.tableReducer.ids)
+     console.log(dataID)
      useEffect(() => {
-          dispatch(getData(dataApi))
-     }, [dataApi])
+          dispatch(getDataItems())
+     }, [])
+     console.log('parent')
      return (
           <div>
                <table border="1">
@@ -28,14 +26,8 @@ const TableData = () => {
                          </tr>
                     </thead>
                     <tbody>
-                         {data.map((item, index) => {
-                              return (
-                                   <ChildTable
-                                        data={item}
-                                        index={index}
-                                        key={index}
-                                   />
-                              )
+                         {dataID.map((item, index) => {
+                              return <ChildTable id={item} key={index} />
                          })}
                     </tbody>
                </table>
