@@ -7,6 +7,9 @@ import store from './Reducers/store'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './common/NavBar/NavBar'
 import App from './App'
+import Register from './components/FormRegister/register'
+import Login from './components/FormLogin/Login'
+
 ReactDOM.render(
      <React.StrictMode>
           <Provider store={store}>
@@ -15,6 +18,8 @@ ReactDOM.render(
                     <Routes>
                          <Route path="/" element={<App />} />
                          <Route path="/table" element={<TableData />} />
+                         <Route path="/register" element={<Register />} />
+                         <Route path="/login" element={<Login />} />
                     </Routes>
                </BrowserRouter>
           </Provider>

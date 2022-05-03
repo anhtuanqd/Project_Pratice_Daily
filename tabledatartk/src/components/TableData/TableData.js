@@ -1,8 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getData, getDataItems } from './tableSlice'
-import GetData from '../../services/Services'
+import { getDataItems } from './tableSlice'
 import ChildTable from './ChildTable'
 
 const TableData = () => {
@@ -11,7 +10,7 @@ const TableData = () => {
      console.log(dataID)
      useEffect(() => {
           dispatch(getDataItems())
-     }, [])
+     }, [dispatch])
      console.log('parent')
      return (
           <div>

@@ -36,7 +36,7 @@ const tableReducer = createSlice({
           })
      }
 })
-const { actions, reducer } = tableReducer
+const { actions } = tableReducer
 export const { getData, editData } = actions
 
 ReducersRegister.register(tableReducer.name, tableReducer.reducer)
