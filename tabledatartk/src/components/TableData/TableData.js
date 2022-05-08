@@ -5,33 +5,32 @@ import { getDataItems } from './tableSlice'
 import ChildTable from './ChildTable'
 
 const TableData = () => {
-     const dispatch = useDispatch()
-     const dataID = useSelector((state) => state.tableReducer.ids)
-     console.log(dataID)
-     useEffect(() => {
-          dispatch(getDataItems())
-     }, [dispatch])
-     console.log('parent')
-     return (
-          <div>
-               <table border="1">
-                    <thead>
-                         <tr>
-                              <th>Tên ứng viên</th>
-                              <th>Số Hiệu</th>
-                              <th>Số lần tham gia</th>
-                              <th>Ngày tham gia</th>
-                              <th>Ngày kết thúc</th>
-                         </tr>
-                    </thead>
-                    <tbody>
-                         {dataID.map((item, index) => {
-                              return <ChildTable id={item} key={index} />
-                         })}
-                    </tbody>
-               </table>
-          </div>
-     )
+    const dispatch = useDispatch()
+    const dataID = useSelector((state) => state.tableReducer.ids)
+    useEffect(() => {
+        dispatch(getDataItems())
+    }, [dispatch])
+    console.log('parent')
+    return (
+        <div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Tên ứng viên</th>
+                        <th>Số Hiệu</th>
+                        <th>Số lần tham gia</th>
+                        <th>Ngày tham gia</th>
+                        <th>Ngày kết thúc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dataID.map((item, index) => {
+                        return <ChildTable id={item} key={index} />
+                    })}
+                </tbody>
+            </table>
+        </div>
+    )
 }
 
 export default TableData

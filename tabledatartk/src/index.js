@@ -9,22 +9,24 @@ import NavBar from './common/NavBar/NavBar'
 import App from './App'
 import Register from './components/FormRegister/register'
 import Login from './components/FormLogin/Login'
+import { LoginMain } from './components/FormOffical'
 
 ReactDOM.render(
-     <React.StrictMode>
-          <Provider store={store}>
-               <BrowserRouter>
-                    <NavBar />
-                    <Routes>
-                         <Route path="/" element={<App />} />
-                         <Route path="/table" element={<TableData />} />
-                         <Route path="/register" element={<Register />} />
-                         <Route path="/login" element={<Login />} />
-                    </Routes>
-               </BrowserRouter>
-          </Provider>
-     </React.StrictMode>,
-     document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <BrowserRouter>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<App />} />
+                    <Route path="/table" element={<TableData />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/loginMain" element={<LoginMain />} />
+                </Routes>
+            </BrowserRouter>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 )
 
 // If you want to start measuring performance in your app, pass a function
